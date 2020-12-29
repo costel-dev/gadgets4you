@@ -1,12 +1,25 @@
-import { productListConstant } from '../constants/productConstants';
+import { productList, productDetails } from '../constants/productConstants';
 
 export const productListReducer = (state = { products: [] }, action) => {
     switch (action.type) {
-        case productListConstant.PRODUCT_LIST_REQUEST:
+        case productList.PRODUCT_LIST_REQUEST:
             return { loading: true, products: [] };
-        case productListConstant.PRODUCT_LIST_SUCCESS:
+        case productList.PRODUCT_LIST_SUCCESS:
             return { loading: false, products: action.payload };
-        case productListConstant.PRODUCT_LIST_FAIL:
+        case productList.PRODUCT_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+}
+
+export const productDetailsReducer = (state = { product: { reviews: [] } }, action) => {
+    switch (action.type) {
+        case productDetails.PRODUCT_DETAILS_REQUEST:
+            return { loading: true, ...state };
+        case productDetails.PRODUCT_DETAILS_SUCCESS:
+            return { loading: false, product: action.payload };
+        case productDetails.PRODUCT_DETAILS_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
