@@ -19,10 +19,47 @@ export const login = (email, password) => async (dispatch) => {
             payload: data
         });
         // Set user to localStorage
-        localStorage.setItem('userInfo', JSON.stringify(data))
+        localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {
         dispatch({
             type: user.USER_LOGIN_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+}
+
+export const logout = () => (dispatch) => {
+    localStorage.removeItem('userInfo');
+    dispatch({ type: user.USER_LOGOUT });
+}
+
+export const register = (name, email, password) => async (dispatch) => {
+    try {
+        dispatch({
+            type: user.USER_REGISTER_REQUEST
+        });
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        // Send a request and wait for our response from the backend 
+        const { data } = await axios.post('/api/users', {name, email, password}, config);
+        dispatch({
+            type: user.USER_REGISTER_SUCCESS,
+            payload: data
+        });
+        // Login the user after register
+        dispatch({
+            type: user.USER_LOGIN_SUCCESS,
+            payload: data
+        });
+        // Set user to localStorage
+        localStorage.setItem('userInfo', JSON.stringify(data));
+    } catch (error) {
+        dispatch({
+            type: user.USER_REGISTER_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         });
     }
