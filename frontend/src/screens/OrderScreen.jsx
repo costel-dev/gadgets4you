@@ -33,6 +33,7 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
+    // Create a dinamic script for PayPal
     const addPayPalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
       const script = document.createElement("script");
