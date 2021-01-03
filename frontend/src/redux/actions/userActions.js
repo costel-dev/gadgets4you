@@ -159,14 +159,42 @@ export const deleteUser = (id) => async (dispatch, getState) => {
             }
         }
         // Send a request and wait for our response from the backend 
-        const { data } = await axios.delete(`/api/users/${id}`, config);
+        await axios.delete(`/api/users/${id}`, config);
         dispatch({
             type: user.USER_DELETE_SUCCESS,
-            payload: data
         });
     } catch (error) {
         dispatch({
             type: user.USER_DELETE_FAIL,
+            payload: error.response && error.response.data.message ? error.response.data.message : error.message
+        });
+    }
+}
+
+export const updateUser = (userToUpdate) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: user.USER_UPDATE_REQUEST
+        });
+        const { userLogin: { userInfo } } = getState();
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+        // Send a request and wait for our response from the backend 
+        const { data } = await axios.put(`/api/users/${userToUpdate._id}`, userToUpdate, config);
+        dispatch({
+            type: user.USER_UPDATE_SUCCESS,
+        });
+        dispatch({
+            type: user.USER_DETAILS_SUCCESS,
+            payload: data
+        });
+    } catch (error) {
+        dispatch({
+            type: user.USER_UPDATE_FAIL,
             payload: error.response && error.response.data.message ? error.response.data.message : error.message
         });
     }
