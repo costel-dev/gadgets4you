@@ -1,10 +1,31 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productUpdateReducer } from './reducers/productReducers';
+import { 
+    productCreateReducer, 
+    productDeleteReducer, 
+    productDetailsReducer, 
+    productListReducer, 
+    productUpdateReducer 
+} from './reducers/productReducers';
 import { cartReducer } from './reducers/cartReducers';
-import { userDeleteReducer, userDetailsReducer, userListReducer, userLoginReducer, userRegisterReducer, userUpdateProfileReducer, userUpdateReducer } from './reducers/userReducers';
-import { myOrdersListReducer, orderCreateReducer, orderDetailsReducer, orderPayReducer } from './reducers/orderReducers';
+import { 
+    userDeleteReducer, 
+    userDetailsReducer, 
+    userListReducer, 
+    userLoginReducer, 
+    userRegisterReducer, 
+    userUpdateProfileReducer, 
+    userUpdateReducer 
+} from './reducers/userReducers';
+import { 
+    myOrdersListReducer, 
+    orderCreateReducer, 
+    orderDetailsReducer, 
+    orderPayReducer, 
+    orderListReducer, 
+    orderDeliverReducer 
+} from './reducers/orderReducers';
 
 const reducer = combineReducers({
     productList: productListReducer,
@@ -23,7 +44,9 @@ const reducer = combineReducers({
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
+    orderDeliver: orderDeliverReducer,
     myOrdersList: myOrdersListReducer,
+    orderList: orderListReducer
 });
 // Get cart items from localStorage if exists
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
