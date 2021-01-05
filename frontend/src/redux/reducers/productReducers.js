@@ -1,17 +1,30 @@
-import { productList, productDetails, productConstants } from '../constants/productConstants';
+import { productConstants } from '../constants/productConstants';
 
 export const productListReducer = (state = { products: [] }, action) => {
     switch (action.type) {
-        case productList.PRODUCT_LIST_REQUEST:
+        case productConstants.PRODUCT_LIST_REQUEST:
             return { loading: true, products: [] };
-        case productList.PRODUCT_LIST_SUCCESS:
+        case productConstants.PRODUCT_LIST_SUCCESS:
             return { 
                 loading: false, 
                 products: action.payload.products,
                 pages: action.payload.pages,
                 page: action.payload.page 
             };
-        case productList.PRODUCT_LIST_FAIL:
+        case productConstants.PRODUCT_LIST_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+}
+
+export const productTopRatedReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+        case productConstants.PRODUCT_TOP_REQUEST:
+            return { loading: true, products: [] };
+        case productConstants.PRODUCT_TOP_SUCCESS:
+            return { loading: false, products: action.payload };
+        case productConstants.PRODUCT_TOP_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
@@ -20,11 +33,11 @@ export const productListReducer = (state = { products: [] }, action) => {
 
 export const productDetailsReducer = (state = { product: { reviews: [] } }, action) => {
     switch (action.type) {
-        case productDetails.PRODUCT_DETAILS_REQUEST:
+        case productConstants.PRODUCT_DETAILS_REQUEST:
             return { loading: true, ...state };
-        case productDetails.PRODUCT_DETAILS_SUCCESS:
+        case productConstants.PRODUCT_DETAILS_SUCCESS:
             return { loading: false, product: action.payload };
-        case productDetails.PRODUCT_DETAILS_FAIL:
+        case productConstants.PRODUCT_DETAILS_FAIL:
             return { loading: false, error: action.payload };
         default:
             return state;
