@@ -142,7 +142,7 @@ export const listUsers = () => async (dispatch, getState) => {
         // Send a request and wait for our response from the backend 
         const { data } = await axios.get(`/api/users`, config);
         dispatch({
-            type: userConstants.USERConstants_LIST_SUCCESS,
+            type: userConstants.USER_LIST_SUCCESS,
             payload: data
         });
     } catch (error) {

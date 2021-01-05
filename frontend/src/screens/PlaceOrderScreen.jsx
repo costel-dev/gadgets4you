@@ -5,8 +5,8 @@ import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 // REDUX
-import { createOrder } from "../redux/actions/orderActions";
 import { useSelector, useDispatch } from "react-redux";
+import { createOrder } from "../redux/actions/orderActions";
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
