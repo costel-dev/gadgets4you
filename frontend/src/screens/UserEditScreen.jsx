@@ -7,7 +7,7 @@ import Loader from "../components/Loader";
 
 // REDUX
 import { getUserDetails, updateUser } from "../redux/actions/userActions";
-import { user as userConstant } from "../redux/constants/userConstants";
+import { userConstants } from "../redux/constants/userConstants";
 import { useDispatch, useSelector } from "react-redux";
 
 const UserEditScreen = ({ match, history }) => {
@@ -33,7 +33,7 @@ const UserEditScreen = ({ match, history }) => {
 
   useEffect(() => {
     if (successUpdate) {
-      dispatch({ type: userConstant.USER_UPDATE_RESET });
+      dispatch({ type: userConstants.USER_UPDATE_RESET });
       history.push("/admin/userlist");
     } else {
       if (!user.name || user._id !== userId) {

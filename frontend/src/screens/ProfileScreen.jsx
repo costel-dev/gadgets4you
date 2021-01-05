@@ -10,6 +10,7 @@ import {
   updateUserProfile,
 } from "../redux/actions/userActions";
 import { listMyOrders } from "../redux/actions/orderActions";
+import { userConstants } from "../redux/constants/userConstants";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProfileScreen = ({ history }) => {
@@ -43,7 +44,8 @@ const ProfileScreen = ({ history }) => {
     if (!userInfo) {
       history.push("/login");
     } else {
-      if (!user.name) {
+      if (!user.name || success) {
+        dispatch({ type: userConstants.USER_UPDATE_PROFILE_RESET });
         dispatch(getUserDetails("profile"));
         dispatch(listMyOrders());
       } else {
@@ -51,7 +53,7 @@ const ProfileScreen = ({ history }) => {
         setEmail(user.email);
       }
     }
-  }, [dispatch, history, userInfo, user]);
+  }, [dispatch, history, userInfo, user, success]);
 
   const submitHandler = (e) => {
     e.preventDefault();
