@@ -2,12 +2,12 @@ import { productList, productDetails, productConstants } from '../constants/prod
 import axios from 'axios';
 
 // GET All Products
-export const listProducts = (keyword = '') => async (dispatch) => {
+export const listProducts = (keyword = '', pageNumber = '') => async (dispatch) => {
     try {
         dispatch({
             type: productList.PRODUCT_LIST_REQUEST
         });
-        const { data } = await axios.get(`/api/products?keyword=${keyword}`);
+        const { data } = await axios.get(`/api/products?keyword=${keyword}&pageNumber=${pageNumber}`);
 
         dispatch({
             type: productList.PRODUCT_LIST_SUCCESS,
