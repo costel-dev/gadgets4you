@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import FormContainer from '../components/FormContainer';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 // REDUX
-import { login } from "../redux/actions/userActions";
-import { useDispatch, useSelector } from "react-redux";
+import { login } from '../redux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LoginScreen = ({ location, history }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
   // Get userLogin from our state
@@ -19,7 +19,7 @@ const LoginScreen = ({ location, history }) => {
   // Destructure our userLogin data
   const { loading, error, userInfo } = userLogin;
 
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   // Redirect if we are logged in
   useEffect(() => {
@@ -46,8 +46,7 @@ const LoginScreen = ({ location, history }) => {
             type="email"
             placeholder="Enter email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
+            onChange={(e) => setEmail(e.target.value)}></Form.Control>
         </Form.Group>
         {/* Password */}
         <Form.Group controlId="password">
@@ -56,8 +55,7 @@ const LoginScreen = ({ location, history }) => {
             type="password"
             placeholder="Enter password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
+            onChange={(e) => setPassword(e.target.value)}></Form.Control>
         </Form.Group>
         {/* Button */}
         <Button type="submit" variant="primary">
@@ -67,8 +65,8 @@ const LoginScreen = ({ location, history }) => {
 
       <Row className="py-3">
         <Col>
-          New Customer?{" "}
-          <Link to={redirect ? `/register?redirect=${redirect}` : "/register"}>
+          New Customer?{' '}
+          <Link to={redirect ? `/register?redirect=${redirect}` : '/register'}>
             Register
           </Link>
         </Col>

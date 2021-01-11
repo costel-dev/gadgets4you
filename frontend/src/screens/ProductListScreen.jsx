@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button, Row, Col } from "react-bootstrap";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
-import Paginate from "../components/Paginate";
+import React, { useEffect } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Table, Button, Row, Col } from 'react-bootstrap';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
+import Paginate from '../components/Paginate';
 
 // REDUX
 import {
   listProducts,
   deleteProduct,
   createProduct,
-} from "../redux/actions/productActions";
-import { productConstants } from "../redux/constants/productConstants";
-import { useDispatch, useSelector } from "react-redux";
+} from '../redux/actions/productActions';
+import { productConstants } from '../redux/constants/productConstants';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductListScreen = ({ history, match }) => {
   const dispatch = useDispatch();
@@ -47,12 +47,12 @@ const ProductListScreen = ({ history, match }) => {
     dispatch({ type: productConstants.PRODUCT_CREATE_RESET });
 
     if (!userInfo.isAdmin) {
-      history.push("/login");
+      history.push('/login');
     }
     if (successCreate) {
       history.push(`/admin/product/${createdProduct._id}/edit`);
     } else {
-      dispatch(listProducts("", pageNumber));
+      dispatch(listProducts('', pageNumber));
     }
   }, [
     dispatch,
@@ -69,7 +69,7 @@ const ProductListScreen = ({ history, match }) => {
   };
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
+    if (window.confirm('Are you sure you want to delete this product?')) {
       dispatch(deleteProduct(id));
     }
   };
@@ -124,8 +124,7 @@ const ProductListScreen = ({ history, match }) => {
                     <Button
                       variant="danger"
                       className="btn-sm"
-                      onClick={() => deleteHandler(product._id)}
-                    >
+                      onClick={() => deleteHandler(product._id)}>
                       <i className="fas fa-trash"></i>
                     </Button>
                   </td>

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Row,
   Col,
@@ -8,25 +8,25 @@ import {
   Card,
   Button,
   Form,
-} from "react-bootstrap";
-import Rating from "../components/Rating";
-import Loader from "../components/Loader";
-import Message from "../components/Message";
-import Meta from "../components/Meta";
+} from 'react-bootstrap';
+import Rating from '../components/Rating';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import Meta from '../components/Meta';
 
 // REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import {
   listProductDetails,
   createProductReview,
-} from "../redux/actions/productActions";
-import { productConstants } from "../redux/constants/productConstants";
+} from '../redux/actions/productActions';
+import { productConstants } from '../redux/constants/productConstants';
 
 const ProductScreen = ({ history, match }) => {
   const dispatch = useDispatch();
   const [qty, setQty] = useState(1);
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -42,9 +42,9 @@ const ProductScreen = ({ history, match }) => {
 
   useEffect(() => {
     if (successProductReview) {
-      alert("Review Submitted!");
+      alert('Review Submitted!');
       setRating(0);
-      setComment("");
+      setComment('');
       dispatch({ type: productConstants.PRODUCT_CREATE_REVIEW_RESET });
     }
     dispatch(listProductDetails(match.params.id));
@@ -113,7 +113,7 @@ const ProductScreen = ({ history, match }) => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                        {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
                       </Col>
                     </Row>
                   </ListGroup.Item>
@@ -126,8 +126,7 @@ const ProductScreen = ({ history, match }) => {
                           <Form.Control
                             as="select"
                             value={qty}
-                            onChange={(e) => setQty(e.target.value)}
-                          >
+                            onChange={(e) => setQty(e.target.value)}>
                             {[...Array(product.countInStock).keys()].map(
                               (x) => (
                                 <option key={x + 1} value={x + 1}>
@@ -146,8 +145,7 @@ const ProductScreen = ({ history, match }) => {
                       onClick={addToCartHandler}
                       className="btn-block"
                       type="button"
-                      disabled={product.countInStock === 0}
-                    >
+                      disabled={product.countInStock === 0}>
                       Add To Cart
                     </Button>
                   </ListGroup.Item>
@@ -182,8 +180,7 @@ const ProductScreen = ({ history, match }) => {
                         <Form.Control
                           as="select"
                           value={rating}
-                          onChange={(e) => setRating(e.target.value)}
-                        >
+                          onChange={(e) => setRating(e.target.value)}>
                           <option value="">Select...</option>
                           <option value="1">1 - Poor</option>
                           <option value="2">2 - Fair</option>
@@ -198,8 +195,9 @@ const ProductScreen = ({ history, match }) => {
                           as="textarea"
                           row="3"
                           value={comment}
-                          onChange={(e) => setComment(e.target.value)}
-                        ></Form.Control>
+                          onChange={(e) =>
+                            setComment(e.target.value)
+                          }></Form.Control>
                       </Form.Group>
                       <Button type="submit" variant="primary">
                         Submit

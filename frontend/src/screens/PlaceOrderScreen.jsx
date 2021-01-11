@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
-import Message from "../components/Message";
-import CheckoutSteps from "../components/CheckoutSteps";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
+import Message from '../components/Message';
+import CheckoutSteps from '../components/CheckoutSteps';
 
 // REDUX
-import { useSelector, useDispatch } from "react-redux";
-import { createOrder } from "../redux/actions/orderActions";
+import { useSelector, useDispatch } from 'react-redux';
+import { createOrder } from '../redux/actions/orderActions';
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -63,8 +63,8 @@ const PlaceOrderScreen = ({ history }) => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city},{" "}
-                {cart.shippingAddress.postalCode},{" "}
+                {cart.shippingAddress.address}, {cart.shippingAddress.city},{' '}
+                {cart.shippingAddress.postalCode},{' '}
                 {cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
@@ -153,8 +153,7 @@ const PlaceOrderScreen = ({ history }) => {
                   type="button"
                   className="btn-block"
                   disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}
-                >
+                  onClick={placeOrderHandler}>
                   Place Order
                 </Button>
               </ListGroup.Item>

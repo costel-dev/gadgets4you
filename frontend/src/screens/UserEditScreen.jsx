@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
+import FormContainer from '../components/FormContainer';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 // REDUX
-import { getUserDetails, updateUser } from "../redux/actions/userActions";
-import { userConstants } from "../redux/constants/userConstants";
-import { useDispatch, useSelector } from "react-redux";
+import { getUserDetails, updateUser } from '../redux/actions/userActions';
+import { userConstants } from '../redux/constants/userConstants';
+import { useDispatch, useSelector } from 'react-redux';
 
 const UserEditScreen = ({ match, history }) => {
   const userId = match.params.id;
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
 
   const dispatch = useDispatch();
@@ -34,7 +34,7 @@ const UserEditScreen = ({ match, history }) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: userConstants.USER_UPDATE_RESET });
-      history.push("/admin/userlist");
+      history.push('/admin/userlist');
     } else {
       if (!user.name || user._id !== userId) {
         dispatch(getUserDetails(userId));
@@ -80,8 +80,7 @@ const UserEditScreen = ({ match, history }) => {
                 type="text"
                 placeholder="Enter name"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
-              ></Form.Control>
+                onChange={(e) => setName(e.target.value)}></Form.Control>
             </Form.Group>
             {/* Email */}
             <Form.Group controlId="email">
@@ -90,8 +89,7 @@ const UserEditScreen = ({ match, history }) => {
                 type="email"
                 placeholder="Enter email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              ></Form.Control>
+                onChange={(e) => setEmail(e.target.value)}></Form.Control>
             </Form.Group>
             {/* Is Admin */}
             <Form.Group controlId="isAdmin">
@@ -99,8 +97,7 @@ const UserEditScreen = ({ match, history }) => {
                 type="checkbox"
                 label="Is Admin"
                 checked={isAdmin}
-                onChange={(e) => setIsAdmin(e.target.checked)}
-              ></Form.Check>
+                onChange={(e) => setIsAdmin(e.target.checked)}></Form.Check>
             </Form.Group>
             {/* Button */}
             <Button type="submit" variant="primary">

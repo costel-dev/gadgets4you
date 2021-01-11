@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Form, Button, Row, Col, Table } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Row, Col, Table } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 // REDUX
 import {
   getUserDetails,
   updateUserProfile,
-} from "../redux/actions/userActions";
-import { listMyOrders } from "../redux/actions/orderActions";
-import { userConstants } from "../redux/constants/userConstants";
-import { useDispatch, useSelector } from "react-redux";
+} from '../redux/actions/userActions';
+import { listMyOrders } from '../redux/actions/orderActions';
+import { userConstants } from '../redux/constants/userConstants';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProfileScreen = ({ history }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
@@ -42,11 +42,11 @@ const ProfileScreen = ({ history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push("/login");
+      history.push('/login');
     } else {
       if (!user.name || success) {
         dispatch({ type: userConstants.USER_UPDATE_PROFILE_RESET });
-        dispatch(getUserDetails("profile"));
+        dispatch(getUserDetails('profile'));
         dispatch(listMyOrders());
       } else {
         setName(user.name);
@@ -58,7 +58,7 @@ const ProfileScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage("Passwords do not match!");
+      setMessage('Passwords do not match!');
     } else {
       dispatch(updateUserProfile({ id: user._id, name, email, password }));
     }
@@ -80,8 +80,7 @@ const ProfileScreen = ({ history }) => {
               type="text"
               placeholder="Enter name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
-            ></Form.Control>
+              onChange={(e) => setName(e.target.value)}></Form.Control>
           </Form.Group>
           {/* Email */}
           <Form.Group controlId="email">
@@ -90,8 +89,7 @@ const ProfileScreen = ({ history }) => {
               type="email"
               placeholder="Enter email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></Form.Control>
+              onChange={(e) => setEmail(e.target.value)}></Form.Control>
           </Form.Group>
           {/* Password */}
           <Form.Group controlId="password">
@@ -100,8 +98,7 @@ const ProfileScreen = ({ history }) => {
               type="password"
               placeholder="Enter password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            ></Form.Control>
+              onChange={(e) => setPassword(e.target.value)}></Form.Control>
           </Form.Group>
           {/* ConfirmPassword */}
           <Form.Group controlId="confirmPassword">
@@ -110,8 +107,9 @@ const ProfileScreen = ({ history }) => {
               type="password"
               placeholder="Confirm Password"
               value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            ></Form.Control>
+              onChange={(e) =>
+                setConfirmPassword(e.target.value)
+              }></Form.Control>
           </Form.Group>
           {/* Button */}
           <Button type="submit" variant="primary">
@@ -146,14 +144,14 @@ const ProfileScreen = ({ history }) => {
                     {order.isPaid ? (
                       order.paidAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>
                     {order.isDelivered ? (
                       order.deliveredAt.substring(0, 10)
                     ) : (
-                      <i className="fas fa-times" style={{ color: "red" }}></i>
+                      <i className="fas fa-times" style={{ color: 'red' }}></i>
                     )}
                   </td>
                   <td>

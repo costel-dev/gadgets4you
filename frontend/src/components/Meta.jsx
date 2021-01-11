@@ -1,5 +1,5 @@
-import React from "react";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import { Helmet } from 'react-helmet';
 
 const Meta = ({ title, description, keywords }) => {
   return (
@@ -12,10 +12,10 @@ const Meta = ({ title, description, keywords }) => {
 };
 
 Meta.defaultProps = {
-  title: "Welcome to Gadgets4You",
-  description: "We sell the best gadgets to make your live easier",
+  title: 'Welcome to Gadgets4You',
+  description: 'We sell the best gadgets to make your live easier',
   keywords:
-    "electronics, gadgets, buy electronics, buy gadgets, cheap laptops, cheap phones",
+    'electronics, gadgets, buy electronics, buy gadgets, cheap laptops, cheap phones',
 };
 
 export default Meta;

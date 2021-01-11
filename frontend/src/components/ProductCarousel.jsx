@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Carousel, Image } from "react-bootstrap";
-import Loader from "./Loader";
-import Message from "./Message";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Carousel, Image } from 'react-bootstrap';
+import Loader from './Loader';
+import Message from './Message';
 
 // REDUX
-import { listTopProducts } from "../redux/actions/productActions";
-import { useDispatch, useSelector } from "react-redux";
+import { listTopProducts } from '../redux/actions/productActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductCarousel = () => {
   const dispatch = useDispatch();

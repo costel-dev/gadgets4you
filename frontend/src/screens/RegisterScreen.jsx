@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import FormContainer from "../components/FormContainer";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import FormContainer from '../components/FormContainer';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 // REDUX
-import { register } from "../redux/actions/userActions";
-import { useDispatch, useSelector } from "react-redux";
+import { register } from '../redux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RegisterScreen = ({ location, history }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const RegisterScreen = ({ location, history }) => {
   // Destructure our userregister data
   const { loading, error, userInfo } = userRegister;
 
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = location.search ? location.search.split('=')[1] : '/';
 
   // Redirect if we are logged in
   useEffect(() => {
@@ -34,7 +34,7 @@ const RegisterScreen = ({ location, history }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      setMessage("Passwords do not match!");
+      setMessage('Passwords do not match!');
     } else {
       dispatch(register(name, email, password));
     }
@@ -54,8 +54,7 @@ const RegisterScreen = ({ location, history }) => {
             type="text"
             placeholder="Enter name"
             value={name}
-            onChange={(e) => setName(e.target.value)}
-          ></Form.Control>
+            onChange={(e) => setName(e.target.value)}></Form.Control>
         </Form.Group>
         {/* Email */}
         <Form.Group controlId="email">
@@ -64,8 +63,7 @@ const RegisterScreen = ({ location, history }) => {
             type="email"
             placeholder="Enter email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          ></Form.Control>
+            onChange={(e) => setEmail(e.target.value)}></Form.Control>
         </Form.Group>
         {/* Password */}
         <Form.Group controlId="password">
@@ -74,8 +72,7 @@ const RegisterScreen = ({ location, history }) => {
             type="password"
             placeholder="Enter password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          ></Form.Control>
+            onChange={(e) => setPassword(e.target.value)}></Form.Control>
         </Form.Group>
         {/* ConfirmPassword */}
         <Form.Group controlId="confirmPassword">
@@ -84,8 +81,7 @@ const RegisterScreen = ({ location, history }) => {
             type="password"
             placeholder="Confirm Password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          ></Form.Control>
+            onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
         </Form.Group>
         {/* Button */}
         <Button type="submit" variant="primary">
@@ -95,8 +91,8 @@ const RegisterScreen = ({ location, history }) => {
 
       <Row className="py-3">
         <Col>
-          Have an Account?{" "}
-          <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+          Have an Account?{' '}
+          <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
             Login
           </Link>
         </Col>

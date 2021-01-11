@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import { LinkContainer } from "react-router-bootstrap";
-import { Table, Button } from "react-bootstrap";
-import Message from "../components/Message";
-import Loader from "../components/Loader";
+import React, { useEffect } from 'react';
+import { LinkContainer } from 'react-router-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 // REDUx
-import { listOrders } from "../redux/actions/orderActions";
-import { useDispatch, useSelector } from "react-redux";
+import { listOrders } from '../redux/actions/orderActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const OrderListScreen = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders());
     } else {
-      history.push("/login");
+      history.push('/login');
     }
   }, [dispatch, history, userInfo]);
 
@@ -56,14 +56,14 @@ const OrderListScreen = ({ history }) => {
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
+                    <i className="fas fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i className="fas fa-times" style={{ color: "red" }}></i>
+                    <i className="fas fa-times" style={{ color: 'red' }}></i>
                   )}
                 </td>
                 <td>
